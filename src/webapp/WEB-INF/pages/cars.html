@@ -3,13 +3,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Table with cars</title>
 </head>
 <body>
 <div>
-    <th:block th:each="car : ${cars}">
-        <h1 th:text="${car}"></h1>
-    </th:block>
+    <table>
+        <thead>
+        <tr>
+            <th style="padding: 10px;">Type</th>
+            <th style="padding: 10px;">Number</th>
+            <th style="padding: 10px;">lifting Capacity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${cars}">
+            <td style="padding: 10px;" th:text="${car.carType}"></td>
+            <td style="padding: 10px;" th:text="${car.carNumber}"></td>
+            <td style="padding: 10px;" th:text="${car.liftingCapacity}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

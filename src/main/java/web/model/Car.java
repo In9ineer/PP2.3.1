@@ -2,9 +2,9 @@ package web.model;
 
 public class Car {
 
-    String carType;
-    String carNumber;
-    int liftingCapacity;
+    private String carType;
+    private String carNumber;
+    private int liftingCapacity;
 
     public Car(String carType, String carNumber, int liftingCapacity) {
         this.carType = carType;
