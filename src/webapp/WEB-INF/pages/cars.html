@@ -10,16 +10,16 @@
     <table>
         <thead>
         <tr>
-            <th style="padding: 10px;">Type</th>
-            <th style="padding: 10px;">Number</th>
-            <th style="padding: 10px;">lifting Capacity</th>
+            <th style="padding: 20px;">Type</th>
+            <th style="padding: 20px;">Number</th>
+            <th style="padding: 20px;">lifting Capacity</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="car : ${cars}">
-            <td style="padding: 10px;" th:text="${car.carType}"></td>
-            <td style="padding: 10px;" th:text="${car.carNumber}"></td>
-            <td style="padding: 10px;" th:text="${car.liftingCapacity}"></td>
+            <td style="padding: 20px;" th:text="${car.carType}"></td>
+            <td style="padding: 20px;" th:text="${car.carNumber}"></td>
+            <td style="padding: 20px;" th:text="${car.liftingCapacity}"></td>
         </tr>
         </tbody>
     </table>
