@@ -1,8 +1,5 @@
 package web.Dao;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
@@ -14,15 +11,8 @@ import java.util.List;
 @Component
 public class UserDao {
 
-//    private final SessionFactory sessionFactory;
-
     @PersistenceContext
     private EntityManager entityManager;
-
-//    @Autowired
-//    public UserDao(SessionFactory sessionFactory) {
-//        this.sessionFactory = sessionFactory;
-//    }
 
     @Transactional(readOnly = true)
     public List<User> getUsers() {
