@@ -7,12 +7,12 @@
 </head>
 <body>
 Ustrs List
+<br/><br/>
 
 <a href="/addUser">Add user</a>
-<a href="/editUser">Edit user</a>
-<a href="/deleteUser">Delite user</a>
 
-<!--<p th:text="${UserTable}"></p>-->
+<br/>
+<hr/>
 
 <div>
 <table>
@@ -27,9 +27,12 @@ Ustrs List
     <tbody>
     <tr th:each="user : ${UserTable}">
         <td style="padding: 20px;" th:text="${user.id}"></td>
-        <td style="padding: 20px;" th:text="${user.firstName}"></td>
+        <td style="padding: 20px;"><a th:href="@{/editUser/{id}(id=${user.id})}" th:text="${user.firstName}"></a></td>
         <td style="padding: 20px;" th:text="${user.lastName}"></td>
         <td style="padding: 20px;" th:text="${user.email}"></td>
+
+<!--        <td style="padding: 20px;"><a th:href="@{/user/{id}(id=${user.id})}" th:text="${user.firstName}"></a></td>-->
+
     </tr>
     </tbody>
 </table>
