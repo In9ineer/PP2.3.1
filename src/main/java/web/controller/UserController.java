@@ -29,9 +29,12 @@ public class UserController {
     }
 
     @PostMapping("/createUser")
-    public String creatUser(@ModelAttribute("user") User user) {
-        userService.save(user);
+    public String createUser(@ModelAttribute("user") User user) {
+        if (user.getFirstName().isEmpty()) {
+            return "redirect:/addUser?error";
+        }
 
+        userService.save(user);
         return "redirect:/";
     }
 
@@ -43,6 +46,10 @@ public class UserController {
 
     @PatchMapping("/{id}")
     public String update (@ModelAttribute("user") User user, @PathVariable("id") long id) {
+        if (user.getFirstName().isEmpty()) {
+            return "redirect:/editUser/{id}?error";
+        }
+
         userService.update(id, user);
         return "redirect:/";
     }

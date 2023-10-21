@@ -12,6 +12,10 @@ Sdes dobavleybt user
 
 <br/><br/>
 
+<div th:if="${param.error}">
+    <p style="color: red;">Name should not be empty</p>
+</div>
+
 <form th:method="POST" th:action="@{/createUser}" th:object="${user}">
     <label for="name">Name &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
     <input th:field="*{firstName}" type="text" id="name"/>

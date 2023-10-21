@@ -11,6 +11,10 @@ Editing a user
 <a href="/">Go to user list</a>
 <br/><br/>
 
+<div th:if="${param.error}">
+    <p style="color: red;">Name should not be empty</p>
+</div>
+
 <form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
     <th style="padding: 20px;">ID</th>
     <td th:text="${user.id}"></td>
