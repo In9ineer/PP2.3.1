@@ -1,25 +1,33 @@
 package web.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Name should not be empty")
     @Column(name = "name", nullable = false)
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "The name must be between 2 and 30 characters")
+    @Pattern(regexp = "[A-Za-z]+", message = "Name should only contain letters")
     private String firstName;
 
     @Column(name = "last_name")
+    @Pattern(regexp = "[A-Za-z]+", message = "Last name should only contain letters")
     private String lastName;
 
     @Column(name = "email")
+    @Email(message = "Invalid email format")
     private String email;
 
     public User() {
