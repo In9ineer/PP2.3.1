@@ -1,33 +1,43 @@
 package web.Dao;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class UserDao {
-    private List<User> testUsersList;
-    private static long testId;
 
-    {
-        testUsersList = new ArrayList<>();
-
-        testUsersList.add(new User("John", "Doe", "john.doe@example.com"));
-        testUsersList.add(new User("Jane", "Smith", "jane.smith@example.com"));
-        testUsersList.add(new User("Michael", "Johnson", "michael.johnson@example.com"));
-        testUsersList.add(new User("Emily", "Brown", "emily.brown@example.com"));
-
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public List<User> getUsers() {
-        return testUsersList;
+        return entityManager.createQuery("select p from User p", User.class)
+                .getResultList();
     }
 
     public void save(User user) {
-
-        user.setId(++testId);
-        testUsersList.add(user);
+        entityManager.persist(user);
     }
+
+    public User getUserById(long id) {
+        return entityManager.find(User.class, id);
+    }
+
+    public void update(long id, User updateUser) {
+        User userToBeUpdate = entityManager.find(User.class, id);
+
+        userToBeUpdate.setFirstName(updateUser.getFirstName());
+        userToBeUpdate.setLastName(updateUser.getLastName());
+        userToBeUpdate.setEmail(updateUser.getEmail());
+    }
+
+    public void delete(long id) {
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
+    }
+
 }
